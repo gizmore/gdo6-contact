@@ -12,7 +12,7 @@ $username = html("$username <{$message->getEmail()}>");
   <md-card-title>
     <md-card-title-text>
       <span class="md-headline"><?= t('card_title_contact_message', [sitename()]); ?></span>
-      <span class="md-subhead"><?= l($message->getCreatedAt()); ?></span>
+      <span class="md-subhead"><?= t($message->getCreatedAt()); ?></span>
     </md-card-title-text>
   </md-card-title>
   <md-card-content layout="column" layout-align="space-between">
