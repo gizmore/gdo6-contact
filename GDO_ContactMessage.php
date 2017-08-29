@@ -8,9 +8,9 @@ use GDO\DB\GDT_CreatedBy;
 use GDO\Mail\GDT_Email;
 use GDO\Type\GDT_Message;
 use GDO\Type\GDT_String;
-use GDO\User\User;
+use GDO\User\GDO_User;
 
-final class ContactMessage extends GDO
+final class GDO_ContactMessage extends GDO
 {
 	public function gdoCached() { return false; }
 	

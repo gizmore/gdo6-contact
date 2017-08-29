@@ -1,9 +1,9 @@
 <?php
-use GDO\Contact\ContactMessage;
+use GDO\Contact\GDO_ContactMessage;
 use GDO\Core\Application;
 use GDO\UI\GDT_Back;
 
-$message instanceof ContactMessage;
+$message instanceof GDO_ContactMessage;
 $user = $message->getUser();
 $username = $user ? $user->displayName() : t('guest');
 $username = html("$username <{$message->getEmail()}>");

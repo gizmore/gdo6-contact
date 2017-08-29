@@ -2,7 +2,7 @@
 namespace GDO\Contact\Method;
 
 use GDO\Admin\MethodAdmin;
-use GDO\Contact\ContactMessage;
+use GDO\Contact\GDO_ContactMessage;
 use GDO\Core\Method;
 use GDO\Util\Common;
 
@@ -16,7 +16,7 @@ final class Message extends Method
 	
 	public function init()
 	{
-		$this->message = ContactMessage::table()->find(Common::getRequestString('id'));
+		$this->message = GDO_ContactMessage::table()->find(Common::getRequestString('id'));
 	}
 	
 	public function execute()
@@ -24,7 +24,7 @@ final class Message extends Method
 		return $this->renderNavBar('Contact')->add($this->templateMessage($this->message));
 	}
 	
-	public function templateMessage(ContactMessage $message)
+	public function templateMessage(GDO_ContactMessage $message)
 	{
 		return $this->templatePHP('message.php', ['message' => $message]);
 	}

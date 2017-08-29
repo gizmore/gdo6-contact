@@ -2,14 +2,14 @@
 namespace GDO\Contact\Method;
 
 use GDO\Captcha\GDT_Captcha;
-use GDO\Contact\ContactMessage;
+use GDO\Contact\GDO_ContactMessage;
 use GDO\Contact\Module_Contact;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
-use GDO\User\User;
+use GDO\User\GDO_User;
 
 final class Form extends MethodForm
 {
@@ -23,8 +23,8 @@ final class Form extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$this->title(t('ft_contact_form', [sitename()]));
-		$form->addFields(ContactMessage::table()->getGDOColumns($this->contactFields()));
-		$form->getField('cmsg_email')->initial(User::current()->getMail());
+		$form->addFields(GDO_ContactMessage::table()->getGDOColumns($this->contactFields()));
+		$form->getField('cmsg_email')->initial(GDO_User::current()->getMail());
 		if (Module_Contact::instance()->cfgCaptchaEnabled())
 		{
 			$form->addField(GDT_Captcha::make());
@@ -35,15 +35,15 @@ final class Form extends MethodForm
 	
 	public function formValidated(GDT_Form $form)
 	{
-		$message = ContactMessage::blank($form->getFormData())->insert();
+		$message = GDO_ContactMessage::blank($form->getFormData())->insert();
 		$this->sendMail($message);
 		$this->resetForm();
 		return \GDO\Template\Message::message('msg_contact_mail_sent', [sitename()])->add($this->renderPage());
 	}
 	
-	public function sendMail(ContactMessage $message)
+	public function sendMail(GDO_ContactMessage $message)
 	{
-		foreach (User::withPermission('staff') as $user)
+		foreach (GDO_User::withPermission('staff') as $user)
 		{
 			$staffname = $user->displayName();
 			$sitename = sitename();
