@@ -2,12 +2,12 @@
 namespace GDO\Contact;
 
 use GDO\DB\GDO;
-use GDO\DB\GDO_AutoInc;
-use GDO\DB\GDO_CreatedAt;
-use GDO\DB\GDO_CreatedBy;
-use GDO\Mail\GDO_Email;
-use GDO\Type\GDO_Message;
-use GDO\Type\GDO_String;
+use GDO\DB\GDT_AutoInc;
+use GDO\DB\GDT_CreatedAt;
+use GDO\DB\GDT_CreatedBy;
+use GDO\Mail\GDT_Email;
+use GDO\Type\GDT_Message;
+use GDO\Type\GDT_String;
 use GDO\User\User;
 
 final class ContactMessage extends GDO
@@ -17,12 +17,12 @@ final class ContactMessage extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDO_AutoInc::make('cmsg_id'),
-			GDO_Email::make('cmsg_email')->notNull()->label('email'),
-			GDO_String::make('cmsg_title')->min(3)->max(128)->notNull()->label('title'),
-			GDO_Message::make('cmsg_message')->min(2)->max(2048)->notNull()->label('message'),
-			GDO_CreatedAt::make('cmsg_created_at'),
-			GDO_CreatedBy::make('cmsg_user_id')->cascadeNull(),
+			GDT_AutoInc::make('cmsg_id'),
+			GDT_Email::make('cmsg_email')->notNull()->label('email'),
+			GDT_String::make('cmsg_title')->min(3)->max(128)->notNull()->label('title'),
+			GDT_Message::make('cmsg_message')->min(2)->max(2048)->notNull()->label('message'),
+			GDT_CreatedAt::make('cmsg_created_at'),
+			GDT_CreatedBy::make('cmsg_user_id')->cascadeNull(),
 		);
 	}
 	

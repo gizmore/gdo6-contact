@@ -2,10 +2,10 @@
 namespace GDO\Contact;
 
 use GDO\Core\Module;
-use GDO\Mail\GDO_Email;
-use GDO\Template\GDO_Bar;
-use GDO\Type\GDO_Checkbox;
-use GDO\UI\GDO_Link;
+use GDO\Mail\GDT_Email;
+use GDO\Template\GDT_Bar;
+use GDO\Type\GDT_Checkbox;
+use GDO\UI\GDT_Link;
 use GDO\User\User;
 /**
  * Contact Module.
@@ -25,9 +25,9 @@ final class Module_Contact extends Module
 	public function getConfig()
 	{
 		return array(
-			GDO_Checkbox::make('contact_captcha')->initial('1'),
-			GDO_Checkbox::make('member_captcha')->initial('1'),
-			GDO_Email::make('contact_mail')->initial(GWF_BOT_EMAIL)->required(),
+			GDT_Checkbox::make('contact_captcha')->initial('1'),
+			GDT_Checkbox::make('member_captcha')->initial('1'),
+			GDT_Email::make('contact_mail')->initial(GWF_BOT_EMAIL)->required(),
 		);
 	}
 
@@ -41,9 +41,9 @@ final class Module_Contact extends Module
 	##############
 	### Navbar ###
 	##############
-	public function hookLeftBar(GDO_Bar $navbar)
+	public function hookLeftBar(GDT_Bar $navbar)
 	{
-		$navbar->addField(GDO_Link::make('link_contact')->href(href('Contact', 'Form')));
+		$navbar->addField(GDT_Link::make('link_contact')->href(href('Contact', 'Form')));
 	}
 
 }

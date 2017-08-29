@@ -1,7 +1,7 @@
 <?php
 use GDO\Contact\ContactMessage;
 use GDO\Core\Application;
-use GDO\UI\GDO_Back;
+use GDO\UI\GDT_Back;
 
 $message instanceof ContactMessage;
 $user = $message->getUser();
@@ -22,6 +22,6 @@ $username = html("$username <{$message->getEmail()}>");
     <div><?= html($message->getMessage()); ?></div>
   </md-card-content>
   <md-card-actions layout="row" layout-align="end center">
-    <?= GDO_Back::make()->renderCell(); ?>
+    <?= GDT_Back::make()->renderCell(); ?>
   </md-card-actions>
 </md-card>

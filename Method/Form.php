@@ -1,12 +1,12 @@
 <?php
 namespace GDO\Contact\Method;
 
-use GDO\Captcha\GDO_Captcha;
+use GDO\Captcha\GDT_Captcha;
 use GDO\Contact\ContactMessage;
 use GDO\Contact\Module_Contact;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
 use GDO\User\User;
@@ -20,20 +20,20 @@ final class Form extends MethodForm
 		return ['cmsg_email', 'cmsg_title', 'cmsg_message'];
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$this->title(t('ft_contact_form', [sitename()]));
 		$form->addFields(ContactMessage::table()->getGDOColumns($this->contactFields()));
 		$form->getField('cmsg_email')->initial(User::current()->getMail());
 		if (Module_Contact::instance()->cfgCaptchaEnabled())
 		{
-			$form->addField(GDO_Captcha::make());
+			$form->addField(GDT_Captcha::make());
 		}
-		$form->addField(GDO_Submit::make()->label('btn_send'));
-		$form->addField(GDO_AntiCSRF::make());
+		$form->addField(GDT_Submit::make()->label('btn_send'));
+		$form->addField(GDT_AntiCSRF::make());
 	}
 	
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$message = ContactMessage::blank($form->getFormData())->insert();
 		$this->sendMail($message);

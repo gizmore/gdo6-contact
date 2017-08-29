@@ -4,7 +4,7 @@ namespace GDO\Contact\Method;
 use GDO\Admin\MethodAdmin;
 use GDO\Contact\ContactMessage;
 use GDO\Table\MethodQueryTable;
-use GDO\UI\GDO_Button;
+use GDO\UI\GDT_Button;
 
 final class Messages extends MethodQueryTable
 {
@@ -28,7 +28,7 @@ final class Messages extends MethodQueryTable
 			$gdo->gdoColumn('cmsg_user_id'),
 			$gdo->gdoColumn('cmsg_email'),
 			$gdo->gdoColumn('cmsg_title'),
-			GDO_Button::make('link_message'),
+			GDT_Button::make('link_message'),
 		);
 	}
 	
