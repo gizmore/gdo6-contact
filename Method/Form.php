@@ -38,7 +38,7 @@ final class Form extends MethodForm
 		$message = GDO_ContactMessage::blank($form->getFormData())->insert();
 		$this->sendMail($message);
 		$this->resetForm();
-		return \GDO\Template\Message::message('msg_contact_mail_sent', [sitename()])->add($this->renderPage());
+		return $this->message('msg_contact_mail_sent', [sitename()])->add($this->renderPage());
 	}
 	
 	public function sendMail(GDO_ContactMessage $message)
@@ -47,14 +47,12 @@ final class Form extends MethodForm
 		{
 			$staffname = $user->displayName();
 			$sitename = sitename();
-			$email = htmlspecialchars($message->getEmail());
+			$email = html($message->getEmail());
 			$username = $message->getUser()->displayName();
-			$title = htmlspecialchars($message->getTitle());
-			$text = htmlspecialchars($message->getMessage());
+			$title = html($message->getTitle());
+			$text = html($message->getMessage());
 			
-			$mail = new Mail();
-			$mail->setSender(GWF_BOT_EMAIL);
-			$mail->setSenderName(GWF_BOT_EMAIL);
+			$mail = Mail::botMail();
 			$mail->setSubject(t('mail_subj_contact', [$sitename]));
 			$mail->setReply($message->getEmail());
 			$args = [$staffname, $sitename, $username, $email, $title, $text];
