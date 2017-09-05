@@ -27,7 +27,7 @@ final class GDO_ContactMessage extends GDO
 	}
 	
 	/**
-	 * @return User
+	 * @return GDO_User
 	 */
 	public function getUser() { return $this->getValue('cmsg_user_id'); }
 	
