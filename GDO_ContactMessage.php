@@ -18,7 +18,7 @@ final class GDO_ContactMessage extends GDO
 	{
 		return array(
 			GDT_AutoInc::make('cmsg_id'),
-			GDT_Email::make('cmsg_email')->notNull()->label('email'),
+			GDT_Email::make('cmsg_email')->label('email'),
 			GDT_String::make('cmsg_title')->min(3)->max(128)->notNull()->label('title'),
 			GDT_Message::make('cmsg_message')->min(2)->max(2048)->notNull()->label('message'),
 			GDT_CreatedAt::make('cmsg_created_at'),

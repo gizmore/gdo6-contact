@@ -22,7 +22,7 @@ final class Form extends MethodForm
 	
 	public function createForm(GDT_Form $form)
 	{
-		$this->title(t('ft_contact_form', [sitename()]));
+// 		$this->title(t('ft_contact_form', [sitename()]));
 		$form->addFields(GDO_ContactMessage::table()->getGDOColumns($this->contactFields()));
 		$form->getField('cmsg_email')->initial(GDO_User::current()->getMail());
 		if (Module_Contact::instance()->cfgCaptchaEnabled())
