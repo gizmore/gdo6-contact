@@ -1,6 +1,5 @@
 <?php
 namespace GDO\Contact\Method;
-
 use GDO\Captcha\GDT_Captcha;
 use GDO\Contact\GDO_ContactMessage;
 use GDO\Contact\Module_Contact;
@@ -10,7 +9,12 @@ use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
 use GDO\User\GDO_User;
-
+/**
+ * Contact form
+ * @author gizmore
+ * @since 3.00
+ * @version 6.05
+ */
 final class Form extends MethodForm
 {
     public function isUserRequired() { return false; }
@@ -22,7 +26,6 @@ final class Form extends MethodForm
 	
 	public function createForm(GDT_Form $form)
 	{
-// 		$this->title(t('ft_contact_form', [sitename()]));
 		$form->addFields(GDO_ContactMessage::table()->getGDOColumns($this->contactFields()));
 		$form->getField('cmsg_email')->initial(GDO_User::current()->getMail());
 		if (Module_Contact::instance()->cfgCaptchaEnabled())
@@ -60,5 +63,4 @@ final class Form extends MethodForm
 			$mail->sendToUser($user);
 		}
 	}
-	
 }
