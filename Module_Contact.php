@@ -3,8 +3,8 @@ namespace GDO\Contact;
 
 use GDO\Core\GDO_Module;
 use GDO\Mail\GDT_Email;
-use GDO\Template\GDT_Bar;
-use GDO\Type\GDT_Checkbox;
+use GDO\UI\GDT_Bar;
+use GDO\DB\GDT_Checkbox;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
 /**
@@ -21,7 +21,7 @@ final class Module_Contact extends GDO_Module
 	##############
 	public function onLoadLanguage() { return $this->loadLanguage('lang/contact'); }
 	public function getClasses() { return ['GDO\Contact\GDO_ContactMessage']; }
-	public function href_administrate_module() { return $this->getMethodHREF('Messages'); }
+	public function href_administrate_module() { return href('Contact', 'Messages'); }
 	public function getConfig()
 	{
 		return array(
