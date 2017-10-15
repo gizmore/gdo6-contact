@@ -9,6 +9,7 @@ use GDO\Mail\GDT_Email;
 use GDO\UI\GDT_Message;
 use GDO\DB\GDT_String;
 use GDO\User\GDO_User;
+use GDO\UI\GDT_Title;
 
 final class GDO_ContactMessage extends GDO
 {
@@ -19,8 +20,8 @@ final class GDO_ContactMessage extends GDO
 		return array(
 			GDT_AutoInc::make('cmsg_id'),
 			GDT_Email::make('cmsg_email')->label('email'),
-			GDT_String::make('cmsg_title')->min(3)->max(128)->notNull()->label('title'),
-			GDT_Message::make('cmsg_message')->min(2)->max(2048)->notNull()->label('message'),
+			GDT_Title::make('cmsg_title')->notNull(),
+			GDT_Message::make('cmsg_message')->min(2)->max(2048)->notNull(),
 			GDT_CreatedAt::make('cmsg_created_at'),
 			GDT_CreatedBy::make('cmsg_user_id')->cascadeNull(),
 		);
