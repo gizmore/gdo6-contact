@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Contact\Method;
 
-use GDO\Admin\MethodAdmin;
+use GDO\Core\MethodAdmin;
 use GDO\Contact\GDO_ContactMessage;
 use GDO\Table\MethodQueryTable;
 use GDO\UI\GDT_Button;
