@@ -1,6 +1,6 @@
 <?php
 return array(
-'link_contact' => 'contact',
+'link_contact' => 'Contact',
 'link_message' => 'Show',
 ######################################
 'ft_contact_form' => '[%s] Contact',
