@@ -2,6 +2,7 @@
 return array(
 'link_contact' => 'Kontakt',
 'link_message' => 'Show',
+'contact_info' => 'Here you can contact the Adminstrators: %s. Alternatively you can write a mail to %s directly.',
 ######################################
 'ft_contact_form' => '[%s] Contact',
 'msg_contact_mail_sent' => 'Your message has been sent to the administrators of %s.',

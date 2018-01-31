@@ -37,6 +37,7 @@ final class Module_Contact extends GDO_Module
 	public function cfgCaptchaGuest() { return $this->getConfigValue('contact_captcha', '1'); }
 	public function cfgCaptchaMember() { return $this->getConfigValue('member_captcha', '0'); }
 	public function cfgCaptchaEnabled() { return GDO_User::current()->isMember() ? $this->cfgCaptchaMember() : $this->cfgCaptchaGuest(); }
+	public function cfgEmail() { return $this->getConfigVar('contact_mail'); }
 	
 	##############
 	### Navbar ###

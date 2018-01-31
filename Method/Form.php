@@ -9,6 +9,11 @@ use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
 use GDO\User\GDO_User;
+use GDO\Core\GDT_Response;
+use GDO\UI\GDT_Panel;
+use GDO\UI\WithHTML;
+use GDO\Profile\GDT_ProfileLink;
+use GDO\UI\GDT_Link;
 /**
  * Contact form
  * @author gizmore
@@ -22,6 +27,24 @@ final class Form extends MethodForm
 	public function contactFields()
 	{
 		return ['cmsg_email', 'cmsg_title', 'cmsg_message'];
+	}
+	
+	public function execute()
+	{
+		return GDT_Response::makeWith($this->getInfoPanel())->add(parent::execute());
+	}
+	
+	public function getInfoPanel()
+	{
+		$names = [];
+		foreach (GDO_User::admins() as $admin)
+		{
+			$names[] = GDT_ProfileLink::make()->forUser($admin)->withNickname()->renderCell();
+		}
+		$names = implode(',', $names);
+		$email = Module_Contact::instance()->cfgEmail();
+		$email = GDT_Link::make()->href('mailto:'.$email)->rawLabel($email)->renderCell();
+		return GDT_Panel::withHTML(t('contact_info', [$names, $email]));
 	}
 	
 	public function createForm(GDT_Form $form)
