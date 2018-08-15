@@ -22,8 +22,8 @@ use GDO\UI\GDT_Link;
  */
 final class Form extends MethodForm
 {
-    public function isUserRequired() { return false; }
-    
+	public function isUserRequired() { return false; }
+	
 	public function contactFields()
 	{
 		return ['cmsg_email', 'cmsg_title', 'cmsg_message'];
