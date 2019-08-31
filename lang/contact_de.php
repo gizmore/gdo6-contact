@@ -4,26 +4,26 @@ return array(
 'link_message' => 'Show',
 'contact_info' => 'Here you can contact the Adminstrators: %s. Alternatively you can write a mail to %s directly.',
 ######################################
-'ft_contact_form' => 'Contact',
-'msg_contact_mail_sent' => 'Your message has been sent to the administrators of %s.',
+'ft_contact_form' => 'Kontakt',
+'msg_contact_mail_sent' => 'Ihre Nachricht wurde an die Adminstratoren gesendet.',
 ######################################
-'card_title_contact_message' => 'Contact Message',
-'msg_by' => 'Message from: %s',
-'msg_title' => 'Title: %s',
+'card_title_contact_message' => 'Kontakt Nachricht',
+'msg_by' => 'Nachricht von %s',
+'msg_title' => 'Titel: %s',
 ######################################
-'mail_subj_contact' => '[%s] Contact Mail',
+'mail_subj_contact' => '[%s] Kontakt Nachricht',
 'mail_body_contact' => '
-Dear %s,
+Hallo %s,
 
-The contact form on %s has been used and a message has been sent.
+Das Kontakt-Formular auf %s wurde benutzt und eine Nachricht versendet.
 
-From: %s <%s>
+Von: %s <%s>
 
-Title: %s
+Titel: %s
 <hr/>
 %s
 <hr/>
-Kind Regards
-The %2$s Team',
+Viele Grüße
+Das %2$s Team',
 ######################################
 );
