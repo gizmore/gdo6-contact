@@ -22,6 +22,7 @@ final class Module_Contact extends GDO_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/contact'); }
 	public function getClasses() { return ['GDO\Contact\GDO_ContactMessage']; }
 	public function href_administrate_module() { return href('Contact', 'Messages'); }
+	public function getDependencies() { return ['Profile']; }
 	public function getConfig()
 	{
 		return array(
