@@ -2,7 +2,7 @@
 return array(
 'link_contact' => 'Kontakt',
 'link_message' => 'Show',
-'contact_info' => 'Here you can contact the Adminstrators: %s. Alternatively you can write a mail to %s directly.',
+'contact_info' => 'Hier können Sie die Adminstratoren kontaktieren: %s. Sie können auch direkt eine Email an %s schreiben.',
 ######################################
 'ft_contact_form' => 'Kontakt',
 'msg_contact_mail_sent' => 'Ihre Nachricht wurde an die Adminstratoren gesendet.',
