@@ -28,7 +28,7 @@ final class Module_Contact extends GDO_Module
 		return array(
 			GDT_Checkbox::make('contact_captcha')->initial('1'),
 			GDT_Checkbox::make('member_captcha')->initial('1'),
-			GDT_Email::make('contact_mail')->initial(GWF_BOT_EMAIL)->required(),
+			GDT_Email::make('contact_mail')->initial(GWF_ADMIN_EMAIL)->required(),
 		);
 	}
 
