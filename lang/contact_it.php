@@ -27,4 +27,13 @@ Titolo: %s
 Cordiali Saluti,
 Il suo %2$s Team',
 ######################################
+'contact_mail_sender_name' => '%s Supporto',
+'contact_mail_receiver_name' => '%s Supporto',
+######################################
+'cfg_contact_captcha' => 'Captcha required?',
+'cfg_member_captcha' => 'Captcha for members?',
+'cfg_contact_mail' => 'Email für direct contact',
+'cfg_contact_mail_sender' => 'Email sender',
+'cfg_contact_mail_receiver' => 'Email for mailing list receivement',
+'cfg_tt_contact_mail_receiver' => 'If set this is the only reciver mail in the contact mailing process.',
 );

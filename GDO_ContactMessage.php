@@ -7,7 +7,6 @@ use GDO\DB\GDT_CreatedAt;
 use GDO\DB\GDT_CreatedBy;
 use GDO\Mail\GDT_Email;
 use GDO\UI\GDT_Message;
-use GDO\DB\GDT_String;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Title;
 

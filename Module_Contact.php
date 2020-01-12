@@ -29,6 +29,8 @@ final class Module_Contact extends GDO_Module
 			GDT_Checkbox::make('contact_captcha')->initial('1'),
 			GDT_Checkbox::make('member_captcha')->initial('1'),
 			GDT_Email::make('contact_mail')->initial(GWF_ADMIN_EMAIL)->required(),
+			GDT_Email::make('contact_mail_sender')->initial(GWF_BOT_EMAIL)->notNull(),
+			GDT_Email::make('contact_mail_receiver'),
 		);
 	}
 
@@ -39,6 +41,8 @@ final class Module_Contact extends GDO_Module
 	public function cfgCaptchaMember() { return $this->getConfigValue('member_captcha', '0'); }
 	public function cfgCaptchaEnabled() { return GDO_User::current()->isMember() ? $this->cfgCaptchaMember() : $this->cfgCaptchaGuest(); }
 	public function cfgEmail() { return $this->getConfigVar('contact_mail'); }
+	public function cfgEmailSender() { return $this->getConfigVar('contact_mail_sender'); }
+	public function cfgEmailReceiver() { return $this->getConfigVar('contact_mail_receiver'); }
 	
 	##############
 	### Navbar ###

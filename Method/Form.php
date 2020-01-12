@@ -1,5 +1,6 @@
 <?php
 namespace GDO\Contact\Method;
+
 use GDO\Captcha\GDT_Captcha;
 use GDO\Contact\GDO_ContactMessage;
 use GDO\Contact\Module_Contact;
@@ -11,14 +12,16 @@ use GDO\Mail\Mail;
 use GDO\User\GDO_User;
 use GDO\Core\GDT_Response;
 use GDO\UI\GDT_Panel;
-use GDO\UI\WithHTML;
 use GDO\Profile\GDT_ProfileLink;
 use GDO\UI\GDT_Link;
+
 /**
- * Contact form
+ * Contact form.
+ * Sends mail to staff or single recipient in module config.
+ * 
  * @author gizmore
  * @since 3.00
- * @version 6.05
+ * @version 6.10
  */
 final class Form extends MethodForm
 {
@@ -62,28 +65,58 @@ final class Form extends MethodForm
 	public function formValidated(GDT_Form $form)
 	{
 		$message = GDO_ContactMessage::blank($form->getFormData())->insert();
-		$this->sendMail($message);
+		$this->sendMails($message);
 		$this->resetForm();
 		return $this->message('msg_contact_mail_sent', [sitename()])->add($this->renderPage());
 	}
 	
-	public function sendMail(GDO_ContactMessage $message)
+	############
+	### Mail ###
+	############
+	public function sendMails(GDO_ContactMessage $message)
 	{
-		foreach (GDO_User::withPermission('staff') as $user)
+		if ($to = Module_Contact::instance()->cfgEmailReceiver())
 		{
-			$staffname = $user->displayName();
-			$sitename = sitename();
-			$email = html($message->getEmail());
-			$username = $message->getUser()->displayName();
-			$title = html($message->getTitle());
-			$text = html($message->getMessage());
-			
-			$mail = Mail::botMail();
-			$mail->setSubject(t('mail_subj_contact', [$sitename]));
-			$mail->setReply($message->getEmail());
-			$args = [$staffname, $sitename, $username, $email, $title, $text];
-			$mail->setBody(t('mail_body_contact', $args));
-			$mail->sendToUser($user);
+			$this->sendSingleMail($to, $message);
+		}
+		else
+		{
+			foreach (GDO_User::withPermission('staff') as $user)
+			{
+				$this->sendMail($user, $message);
+			}
 		}
 	}
+	
+	private function sendSingleMail($to, GDO_ContactMessage $message)
+	{
+		$user = GDO_User::blank(array(
+			'user_name' => tiso(GWF_LANGUAGE, 'contact_mail_receiver_name', [sitename()]),
+			'user_language' => GWF_LANGUAGE,
+			'user_email' => $to,
+		));
+		return $this->sendMail($user, $message);
+	}
+	
+	private function sendMail(GDO_User $user, GDO_ContactMessage $message)
+	{
+		$module = Module_Contact::instance();
+
+		$sitename = sitename();
+		$staffname = $user->displayNameLabel();
+		$email = html($message->getEmail());
+		$username = $message->getUser()->displayNameLabel();
+		$title = html($message->getTitle());
+		$text = html($message->getMessage());
+
+		$mail = new Mail();
+		$mail->setSender($module->cfgEmailSender());
+		$mail->setSenderName(tusr($user, 'contact_mail_sender_name', [$sitename]));
+		$mail->setSubject(tusr($user, 'mail_subj_contact', [$sitename]));
+		$mail->setReply($message->getEmail());
+		$args = [$staffname, $sitename, $username, $email, $title, $text];
+		$mail->setBody(tusr($user, 'mail_body_contact', $args));
+		$mail->sendToUser($user);
+	}
+
 }
