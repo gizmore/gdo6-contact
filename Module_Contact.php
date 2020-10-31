@@ -31,6 +31,8 @@ final class Module_Contact extends GDO_Module
 			GDT_Email::make('contact_mail')->initial(GWF_ADMIN_EMAIL)->required(),
 			GDT_Email::make('contact_mail_sender')->initial(GWF_BOT_EMAIL)->notNull(),
 			GDT_Email::make('contact_mail_receiver'),
+		    GDT_Checkbox::make('hook_left_bar')->initial('1'),
+		    GDT_Checkbox::make('hook_right_bar')->initial('0'),
 		);
 	}
 
@@ -43,13 +45,26 @@ final class Module_Contact extends GDO_Module
 	public function cfgEmail() { return $this->getConfigVar('contact_mail'); }
 	public function cfgEmailSender() { return $this->getConfigVar('contact_mail_sender'); }
 	public function cfgEmailReceiver() { return $this->getConfigVar('contact_mail_receiver'); }
+	public function cfgHookLeftBar() { return $this->getConfigValue('hook_left_bar'); }
+	public function cfgHookRightBar() { return $this->getConfigValue('hook_right_bar'); }
 	
 	##############
 	### Navbar ###
 	##############
 	public function hookLeftBar(GDT_Bar $navbar)
 	{
-		$navbar->addField(GDT_Link::make('link_contact')->href(href('Contact', 'Form')));
+	    if ($this->cfgHookLeftBar())
+	    {
+	        $navbar->addField(GDT_Link::make('link_contact')->href(href('Contact', 'Form')));
+	    }
 	}
 
+	public function hookRightBar(GDT_Bar $navbar)
+	{
+	    if ($this->cfgHookRightBar())
+	    {
+	        $navbar->addField(GDT_Link::make('link_contact_messages')->href(href('Contact', 'Messages')));
+	    }
+	}
+	
 }
