@@ -10,8 +10,6 @@ use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
 use GDO\User\GDO_User;
-use GDO\Core\GDT_Response;
-use GDO\UI\GDT_Panel;
 use GDO\Profile\GDT_ProfileLink;
 use GDO\UI\GDT_Link;
 
@@ -20,8 +18,8 @@ use GDO\UI\GDT_Link;
  * Sends mail to staff or single recipient in module config.
  * 
  * @author gizmore
- * @since 3.00
  * @version 6.10
+ * @since 3.00
  */
 final class Form extends MethodForm
 {
@@ -32,12 +30,7 @@ final class Form extends MethodForm
 		return ['cmsg_email', 'cmsg_title', 'cmsg_message'];
 	}
 	
-	public function execute()
-	{
-		return GDT_Response::makeWith($this->getInfoPanel())->add(parent::execute());
-	}
-	
-	public function getInfoPanel()
+	private function getInfoText()
 	{
 		$names = [];
 		foreach (GDO_User::admins() as $admin)
@@ -47,11 +40,12 @@ final class Form extends MethodForm
 		$names = implode(',', $names);
 		$email = Module_Contact::instance()->cfgEmail();
 		$email = GDT_Link::make()->href('mailto:'.$email)->rawLabel($email)->renderCell();
-		return GDT_Panel::withHTML(t('contact_info', [$names, $email]));
+		return t('contact_info', [$names, $email]);
 	}
 	
 	public function createForm(GDT_Form $form)
 	{
+	    $form->info($this->getInfoText());
 		$form->addFields(GDO_ContactMessage::table()->getGDOColumns($this->contactFields()));
 		$form->getField('cmsg_email')->initial(GDO_User::current()->getMail());
 		if (Module_Contact::instance()->cfgCaptchaEnabled())
