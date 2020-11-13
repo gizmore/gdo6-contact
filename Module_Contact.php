@@ -3,10 +3,11 @@ namespace GDO\Contact;
 
 use GDO\Core\GDO_Module;
 use GDO\Mail\GDT_Email;
-use GDO\UI\GDT_Bar;
 use GDO\DB\GDT_Checkbox;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
+use GDO\UI\GDT_Page;
+
 /**
  * Contact Module.
  * Provides contact to admins, and
@@ -51,19 +52,19 @@ final class Module_Contact extends GDO_Module
 	##############
 	### Navbar ###
 	##############
-	public function hookLeftBar(GDT_Bar $navbar)
+	public function onInitSidebar()
 	{
-	    if ($this->cfgHookLeftBar())
+// 	    if ($this->cfgHookLeftBar())
 	    {
-	        $navbar->addField(GDT_Link::make('link_contact')->href(href('Contact', 'Form')));
+	        GDT_Page::$INSTANCE->leftNav->addField(GDT_Link::make('link_contact')->href(href('Contact', 'Form')));
 	    }
-	}
-
-	public function hookRightBar(GDT_Bar $navbar)
-	{
-	    if ($this->cfgHookRightBar())
+// 	    if ($this->cfgHookRightBar())
 	    {
-	        $navbar->addField(GDT_Link::make('link_contact_messages')->href(href('Contact', 'Messages')));
+	        if (GDO_User::current()->isStaff())
+	        {
+	            $navbar = GDT_Page::$INSTANCE->rightNav;
+    	        $navbar->addField(GDT_Link::make('link_contact_messages')->href(href('Contact', 'Messages')));
+	        }
 	    }
 	}
 	
