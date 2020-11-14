@@ -59,13 +59,13 @@ final class Module_Contact extends GDO_Module
 	        GDT_Page::$INSTANCE->leftNav->addField(GDT_Link::make('link_contact')->href(href('Contact', 'Form')));
 	    }
 // 	    if ($this->cfgHookRightBar())
-	    {
-	        if (GDO_User::current()->isStaff())
-	        {
-	            $navbar = GDT_Page::$INSTANCE->rightNav;
-    	        $navbar->addField(GDT_Link::make('link_contact_messages')->href(href('Contact', 'Messages')));
-	        }
-	    }
+// 	    {
+// 	        if (GDO_User::current()->isStaff())
+// 	        {
+// 	            $navbar = GDT_Page::$INSTANCE->rightNav;
+//     	        $navbar->addField(GDT_Link::make('link_contact_messages')->href(href('Contact', 'Messages')));
+// 	        }
+// 	    }
 	}
 	
 }
