@@ -21,7 +21,7 @@ final class Message extends Method
 	
 	public function execute()
 	{
-		return $this->renderNavBar('Contact')->add($this->templateMessage($this->message));
+		return $this->templateMessage($this->message);
 	}
 	
 	public function templateMessage(GDO_ContactMessage $message)

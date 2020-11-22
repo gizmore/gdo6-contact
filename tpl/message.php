@@ -1,27 +1,18 @@
 <?php
 use GDO\Contact\GDO_ContactMessage;
-use GDO\Core\Application;
 use GDO\UI\GDT_Back;
+use GDO\UI\GDT_Card;
+/** @var $message GDO_ContactMessage **/
 
-$message instanceof GDO_ContactMessage;
 $user = $message->getUser();
-$username = $user ? $user->displayName() : t('guest');
+$username = $user ? $user->displayNameLabel() : t('ghost');
 $username = html("$username <{$message->getEmail()}>");
-?>
-<md-card>
-  <md-card-title>
-	<md-card-title-text>
-	  <span class="md-headline"><?= t('card_title_contact_message', [sitename()]); ?></span>
-	  <span class="md-subhead"><?= t($message->getCreatedAt()); ?></span>
-	</md-card-title-text>
-  </md-card-title>
-  <md-card-content layout="column" layout-align="space-between">
-	<div><?= t('msg_by', [$username]); ?></div>
-	<div><?= t('msg_title', [html($message->getTitle())]); ?></div>
-	<hr/>
-	<div><?= html($message->getMessage()); ?></div>
-  </md-card-content>
-  <md-card-actions layout="row" layout-align="end center">
-	<?= GDT_Back::make()->renderCell(); ?>
-  </md-card-actions>
-</md-card>
+
+$card = GDT_Card::make()->gdo($message);
+$card->creatorHeader($message->gdoColumn('cmsg_title'));
+
+$card->content($message->gdoColumn('cmsg_message'));
+
+$card->actions()->addField(GDT_Back::make());
+
+echo $card->renderCell();
