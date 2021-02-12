@@ -52,7 +52,7 @@ final class Form extends MethodForm
 		{
 			$form->addField(GDT_Captcha::make());
 		}
-		$form->addField(GDT_Submit::make()->label('btn_send'));
+		$form->actions()->addField(GDT_Submit::make()->label('btn_send'));
 		$form->addField(GDT_AntiCSRF::make());
 	}
 	
