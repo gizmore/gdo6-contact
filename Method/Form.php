@@ -39,7 +39,8 @@ final class Form extends MethodForm
 		}
 		$names = implode(',', $names);
 		$email = Module_Contact::instance()->cfgEmail();
-		$email = GDT_Link::make()->href('mailto:'.$email)->labelRaw($email)->renderCell();
+		$subject = t('mail_subj_contact', [sitename()]);
+		$email = GDT_Link::make()->href('mailto:'.$email.'?subject='.$subject)->labelRaw($email)->renderCell();
 		return t('contact_info', [$names, $email]);
 	}
 	
