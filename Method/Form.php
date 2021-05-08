@@ -18,8 +18,8 @@ use GDO\UI\GDT_Link;
  * Sends mail to staff or single recipient in module config.
  * 
  * @author gizmore
- * @version 6.10
- * @since 3.00
+ * @version 6.10.3
+ * @since 3.2.0
  */
 final class Form extends MethodForm
 {
