@@ -62,7 +62,7 @@ final class Form extends MethodForm
 		$message = GDO_ContactMessage::blank($form->getFormData())->insert();
 		$this->sendMails($message);
 		$this->resetForm();
-		return $this->message('msg_contact_mail_sent', [sitename()])->add($this->renderPage());
+		return $this->message('msg_contact_mail_sent', [sitename()])->addField($this->renderPage());
 	}
 	
 	############

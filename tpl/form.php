@@ -4,5 +4,5 @@ use GDO\UI\GDT_Panel;
 /** @var $form GDT_Form **/
 ?>
 <?php 
-GDT_Panel::make()->title('GELLI')->html('TEST')->render()->add($form->render());
+GDT_Panel::make()->title('GELLI')->html('TEST')->render()->addField($form->render());
 ?>
