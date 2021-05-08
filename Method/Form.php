@@ -86,8 +86,8 @@ final class Form extends MethodForm
 	private function sendSingleMail($to, GDO_ContactMessage $message)
 	{
 		$user = GDO_User::blank(array(
-			'user_name' => tiso(GWF_LANGUAGE, 'contact_mail_receiver_name', [sitename()]),
-			'user_language' => GWF_LANGUAGE,
+			'user_name' => tiso(GDO_LANGUAGE, 'contact_mail_receiver_name', [sitename()]),
+			'user_language' => GDO_LANGUAGE,
 			'user_email' => $to,
 		));
 		return $this->sendMail($user, $message);
