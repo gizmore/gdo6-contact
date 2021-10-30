@@ -37,4 +37,5 @@ The %2$s Team',
 'cfg_tt_contact_mail_receiver' => 'If set this is the only reciver mail in the contact mailing process.',
 
 'mdescr_contact_form' => 'Contact the admins of %s',
+'list_contact_messages' => '%s Contact messages',
 );

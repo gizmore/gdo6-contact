@@ -16,14 +16,14 @@ final class GDO_ContactMessage extends GDO
 	
 	public function gdoColumns()
 	{
-		return array(
+		return [
 			GDT_AutoInc::make('cmsg_id'),
 			GDT_Email::make('cmsg_email')->label('email'),
 			GDT_Title::make('cmsg_title')->notNull(),
-			GDT_Message::make('cmsg_message')->min(2)->max(2048)->notNull(),
+			GDT_Message::make('cmsg_message')->min(2)->max(8192)->notNull(),
 			GDT_CreatedAt::make('cmsg_created_at'),
 			GDT_CreatedBy::make('cmsg_user_id')->cascadeNull(),
-		);
+		];
 	}
 	
 	/**

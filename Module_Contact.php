@@ -14,6 +14,8 @@ use GDO\UI\GDT_Page;
  * Write users a mail without spoiling their email.
  * @author gizmore
  * @license MIT
+ * @version 6.10.6
+ * @since 4.0.1
  */
 final class Module_Contact extends GDO_Module
 {
@@ -54,18 +56,10 @@ final class Module_Contact extends GDO_Module
 	##############
 	public function onInitSidebar()
 	{
-// 	    if ($this->cfgHookLeftBar())
+	    if ($this->cfgHookLeftBar())
 	    {
 	        GDT_Page::$INSTANCE->leftNav->addField(GDT_Link::make('link_contact')->href(href('Contact', 'Form')));
 	    }
-// 	    if ($this->cfgHookRightBar())
-// 	    {
-// 	        if (GDO_User::current()->isStaff())
-// 	        {
-// 	            $navbar = GDT_Page::$INSTANCE->rightNav;
-//     	        $navbar->addField(GDT_Link::make('link_contact_messages')->href(href('Contact', 'Messages')));
-// 	        }
-// 	    }
 	}
 	
 }
