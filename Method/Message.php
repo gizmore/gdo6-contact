@@ -14,7 +14,7 @@ final class Message extends Method
 	
 	private $message;
 	
-	public function init()
+	public function onInit()
 	{
 		$this->message = GDO_ContactMessage::table()->find(Common::getRequestString('id'));
 	}
