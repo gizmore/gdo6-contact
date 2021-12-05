@@ -18,7 +18,7 @@ use GDO\UI\GDT_Link;
  * Sends mail to staff or single recipient in module config.
  * 
  * @author gizmore
- * @version 6.10.3
+ * @version 6.11.1
  * @since 3.2.0
  */
 final class Form extends MethodForm
@@ -85,11 +85,11 @@ final class Form extends MethodForm
 	
 	private function sendSingleMail($to, GDO_ContactMessage $message)
 	{
-		$user = GDO_User::blank(array(
+		$user = GDO_User::blank([
 			'user_name' => tiso(GDO_LANGUAGE, 'contact_mail_receiver_name', [sitename()]),
 			'user_language' => GDO_LANGUAGE,
 			'user_email' => $to,
-		));
+		]);
 		return $this->sendMail($user, $message);
 	}
 	
